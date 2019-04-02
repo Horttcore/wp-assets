@@ -3,7 +3,8 @@
     "description": "A composer package for managing assets",
     "keywords": [
         "horttcore",
-        "wp-assets"
+        "wp-assets",
+        "assets"
     ],
     "homepage": "https://github.com/horttcore/wp-assets",
     "license": "MIT",
@@ -33,7 +34,6 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
     },
     "config": {
         "sort-packages": true

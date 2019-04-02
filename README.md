@@ -18,14 +18,23 @@ composer require horttcore/wp-assets
 ## Usage
 
 ``` php
-$skeleton = new BeyondCode\Skeleton();
-echo $skeleton->echoPhrase('Hello, BeyondCode!');
+new Style(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
+new EditorStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
+new Script(string $handle, string $source, array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true);
 ```
 
-### Testing
+``` php
+// Example with service container
+$container->bind('assets', [
+    new Style('theme', '/dist/css/app.css', ['fonts']);
+    new Script('fancybox', '/dist/vendor/fancybox/dist/jquery.fancybox.min.js', ['jquery'], true, true);
+    new EditorStyle('editor-styles', '/dist/css/editor-styles.css');
+});
 
-``` bash
-composer test
+// Without service container
+new Style('theme', '/dist/css/app.css', ['fonts'])->register();
+new Script('fancybox', '/dist/vendor/fancybox/dist/jquery.fancybox.min.js', ['jquery'], true, true, true)->register();
+new EditorStyle('editor-styles', '/dist/css/editor-styles.css')->register();
 ```
 
 ### Changelog
@@ -43,12 +52,7 @@ If you discover any security related issues, please email me@horttcore.de instea
 ## Credits
 
 - [Ralf Hortt](https://github.com/horttcore)
-- [All Contributors](../../contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## PHP Package Boilerplate
-
-This package was generated using the [PHP Package Boilerplate](https://laravelpackageboilerplate.com).
