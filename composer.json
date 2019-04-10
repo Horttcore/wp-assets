@@ -1,41 +1,16 @@
 {
     "name": "horttcore/wp-assets",
-    "description": "A composer package for managing assets",
-    "keywords": [
-        "horttcore",
-        "wp-assets"
-    ],
-    "homepage": "https://github.com/horttcore/wp-assets",
+    "description": "A helper package for working with the WordPress assets",
     "license": "MIT",
     "authors": [
         {
             "name": "Ralf Hortt",
-            "email": "me@horttcore.de",
-            "role": "Developer"
+            "email": "me@horttcore.de"
         }
     ],
-    "require": {
-        "php": "^7.1"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^7.0"
-    },
     "autoload": {
         "psr-4": {
-            "Horttcore\\WpAssets\\": "src"
+            "Horttcore\\Assets\\": "src/"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Horttcore\\WpAssets\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
-    },
-    "config": {
-        "sort-packages": true
     }
 }
