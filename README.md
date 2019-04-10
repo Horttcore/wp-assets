@@ -1,6 +1,6 @@
 # WP Assets
 
-## Usage
+## Documentation
 
 ### Scripts
 
@@ -20,4 +20,15 @@ new Style(string $handle, string $source, array $dependencies = [], $version = t
 new AdminStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
 new EditorStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
 new LoginStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
+```
+
+## Usage
+
+```php
+<?php
+// Initialize the Style object
+$myTheme = new Style('my-theme', 'theme.css', ['global.css'], '1.0.0', true);
+
+// Hook Style object into WordPress lifecycle
+$myTheme->register();
 ```
