@@ -1,5 +1,9 @@
 # WP Assets
 
+## Installation
+
+`composer require horttcore/wp-assets`
+
 ## Documentation
 
 ### Scripts
