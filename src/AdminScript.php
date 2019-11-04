@@ -2,7 +2,7 @@
 /**
  * Admin Script Component.
  *
- * This file handles registrationing and enqueing of script files in the editor
+ * This file handles the registration and integration of script files in wp-admin
  *
  * @see       https://developer.wordpress.org/reference/functions/wp_enqueue_script/
  *

@@ -2,7 +2,7 @@
 /**
  * Style component.
  *
- * This file handles registrationing and enqueing of style files
+ * This file handles registration and integration of style files
  *
  * @see       https://developer.wordpress.org/reference/functions/wp_enqueue_style/
  *
@@ -31,7 +31,7 @@ class Style extends Asset
      *
      * @return void
      */
-    public function __construct(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true)
+    public function __construct(string $handle, string $source = '', array $dependencies = [], $version = true, bool $autoload = true)
     {
         $this->handle = $handle;
         $this->source = $source;
@@ -57,6 +57,10 @@ class Style extends Asset
      */
     public function registerAsset(): void
     {
+        if ((bool) wp_styles()->query($this->handle, 'registered')) {
+            return;
+        }
+
         \wp_register_style($this->handle, $this->locateSource(), $this->dependencies, $this->version());
     }
 }

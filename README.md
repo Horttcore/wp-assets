@@ -41,8 +41,21 @@ new LoginStyle(string $handle, string $source, array $dependencies = [], $versio
 ```php
 <?php
 // Initialize the Style object
-$myTheme = new Style('my-theme', 'theme.css', ['global.css'], '1.0.0', true);
+$myTheme = new Style(get_stylesheet_directory_uri() . '/my-theme', 'theme.css');
 
 // Hook Style object into WordPress lifecycle
 $myTheme->register();
+```
+
+```php
+<?php
+// Shortversion
+(new Style(get_stylesheet_directory_uri() . '/my-theme', 'theme.css'))->register();
+```
+
+```php
+<?php
+// Reuse asset
+(new Style('my-theme', 'theme.css')->register();
+(new LoginStyle('my-theme'))->register();
 ```

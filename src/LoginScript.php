@@ -2,7 +2,7 @@
 /**
  * Login Script Component.
  *
- * This file handles registrationing and enqueing of script files in the editor
+ * This file handles registration and integration of script files in the editor
  *
  * @see       https://developer.wordpress.org/reference/functions/wp_enqueue_script/
  *

@@ -2,7 +2,7 @@
 /**
  * Assets base component.
  *
- * This file handles registrationing and enqueing of asset files
+ * This file handles registration and integration of asset files
  *
  * @license GPL-2.0+
  */
@@ -96,7 +96,8 @@ abstract class Asset
      */
     public function register(): void
     {
-        \add_action($this->hook, [$this, 'registerAsset']);
+        \add_action('init', [$this, 'registerAsset']);
+        \add_action('admin_init', [$this, 'registerAsset']);
 
         if ($this->autoload) {
             \add_action($this->hook, [$this, 'enqueueAsset']);

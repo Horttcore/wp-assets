@@ -2,7 +2,7 @@
 /**
  * Script component.
  *
- * This file handles registrationing and enqueing of script files
+ * This file handles registration and integration of script files
  *
  * @see       https://developer.wordpress.org/reference/functions/wp_enqueue_script/
  *
@@ -32,7 +32,7 @@ class Script extends Asset
      *
      * @return void
      */
-    public function __construct(string $handle, string $source, array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true)
+    public function __construct(string $handle, string $source = '', array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true)
     {
         $this->handle = $handle;
         $this->source = $source;
@@ -59,6 +59,10 @@ class Script extends Asset
      */
     public function registerAsset(): void
     {
+        if ((bool) wp_scripts()->query($this->handle, 'registered')) {
+            return;
+        }
+
         \wp_register_script($this->handle, $this->locateSource(), $this->dependencies, $this->version(), $this->inFooter);
     }
 }

@@ -2,7 +2,7 @@
 /**
  * Admin Style component.
  *
- * This file handles registrationing and enqueing of style files
+ * This file handles registration and integration of style files
  *
  * @see       https://developer.wordpress.org/reference/functions/wp_enqueue_style/
  *
