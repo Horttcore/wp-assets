@@ -1,5 +1,5 @@
 {
-    "name": "horttcore/wp-assets",
+    "name": "ralfhortt/wp-assets",
     "description": "A helper package for working with the WordPress assets",
     "license": "MIT",
     "authors": [
