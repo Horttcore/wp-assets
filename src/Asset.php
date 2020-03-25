@@ -76,7 +76,21 @@ abstract class Asset
      **/
     public function getPath(): string
     {
-        return \get_stylesheet_directory().$this->source;
+        $path = str_replace(
+            [
+                \get_stylesheet_directory_uri(),
+                \get_template_directory_uri(),
+                WP_PLUGIN_URL,
+            ],
+            [
+                \get_stylesheet_directory(),
+                \get_template_directory(),
+                \WP_PLUGIN_DIR,
+            ],
+            $this->source
+        );
+
+        return $path;
     }
 
     /**
@@ -86,7 +100,7 @@ abstract class Asset
      **/
     public function getUri(): string
     {
-        return \get_stylesheet_directory_uri().$this->source;
+        return $this->source;
     }
 
     /**
@@ -125,11 +139,15 @@ abstract class Asset
      */
     protected function isExternal(): bool
     {
-        return (
-            substr($this->source, 0, 2) == '//' ||
-            substr($this->source, 0, 7) == 'http://' ||
-            substr($this->source, 0, 8) == 'https://'
-        ) ? true : false;
+        if (false !== strpos($this->source, home_url())) {
+            return false;
+        }
+
+        // if (false !== strpos($this->source, network_site_url())) {
+        //     return false;
+        // }
+
+        return true;
     }
 
     /**
@@ -149,7 +167,7 @@ abstract class Asset
      *
      * @return string Version string
      */
-    public function version(): string
+    public function version(): ?string
     {
         if ($this->isExternal()) {
             return $this->version;
