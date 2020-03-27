@@ -1,5 +1,6 @@
 # 2.0.0 - 2020-03-25
 
+-   Fix cache busting
 -   Remove relative path support
 -   Improve child theme handling
 -   Rename composer package name

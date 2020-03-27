@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-namespace Horttcore\Assets;
+namespace RalfHortt\Assets;
 
 abstract class Asset
 {

@@ -2,7 +2,7 @@
 
 ## Installation
 
-`composer require horttcore/wp-assets`
+`composer require ralfhortt/wp-assets`
 
 ## Documentation
 
@@ -10,10 +10,10 @@
 
 ```php
 <?php
-use \Horttcore\Assets\Script;
-use \Horttcore\Assets\AdminScript;
-use \Horttcore\Assets\EditorScript;
-use \Horttcore\Assets\LoginScript;
+use \RalfHortt\Assets\Script;
+use \RalfHortt\Assets\AdminScript;
+use \RalfHortt\Assets\EditorScript;
+use \RalfHortt\Assets\LoginScript;
 
 new Script(string $handle, string $source, array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true);
 new AdminScript(string $handle, string $source, array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true);
@@ -25,10 +25,10 @@ new LoginScript(string $handle, string $source, array $dependencies = [], string
 
 ```php
 <?php
-use \Horttcore\Assets\Style;
-use \Horttcore\Assets\AdminStyle;
-use \Horttcore\Assets\EditorStyle;
-use \Horttcore\Assets\LoginStyle;
+use \RalfHortt\Assets\Style;
+use \RalfHortt\Assets\AdminStyle;
+use \RalfHortt\Assets\EditorStyle;
+use \RalfHortt\Assets\LoginStyle;
 
 new Style(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
 new AdminStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
