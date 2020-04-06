@@ -108,7 +108,7 @@ abstract class Asset
      *
      * @return void
      */
-    public function register(): void
+    public function register()
     {
         \add_action('init', [$this, 'registerAsset']);
         \add_action('admin_init', [$this, 'registerAsset']);
@@ -123,14 +123,14 @@ abstract class Asset
      *
      * @return void
      */
-    abstract public function enqueueAsset(): void;
+    abstract public function enqueueAsset();
 
     /**
      * Register asset.
      *
      * @return void
      */
-    abstract public function registerAsset(): void;
+    abstract public function registerAsset();
 
     /**
      * Is asset an external resource?

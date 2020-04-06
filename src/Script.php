@@ -47,7 +47,7 @@ class Script extends Asset
      *
      * @return void
      */
-    public function enqueueAsset(): void
+    public function enqueueAsset()
     {
         \wp_enqueue_script($this->handle);
     }
@@ -57,7 +57,7 @@ class Script extends Asset
      *
      * @return void
      */
-    public function registerAsset(): void
+    public function registerAsset()
     {
         if ((bool) wp_scripts()->query($this->handle, 'registered')) {
             return;

@@ -45,7 +45,7 @@ class Style extends Asset
      *
      * @return void
      */
-    public function enqueueAsset(): void
+    public function enqueueAsset()
     {
         \wp_enqueue_style($this->handle);
     }
@@ -55,7 +55,7 @@ class Style extends Asset
      *
      * @return void
      */
-    public function registerAsset(): void
+    public function registerAsset()
     {
         if ((bool) wp_styles()->query($this->handle, 'registered')) {
             return;
