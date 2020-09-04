@@ -1,44 +1,39 @@
 <?php
 /**
- * Assets base component
+ * Assets base component.
  *
- * This file handles registrationing and enqueing of asset files
+ * This file handles registration and integration of asset files
  *
- * @package horttcore\wp-assets
  * @license GPL-2.0+
  */
 
-namespace Horttcore\Assets;
+namespace RalfHortt\Assets;
 
-/**
- *
- */
 abstract class Asset
 {
-
     /**
-     * Where should the assets be registered
+     * Where should the assets be registered.
      *
-     * @var string $hook Hook to register
+     * @var string Hook to register
      */
     protected $hook;
 
     /**
-     * Conditional loading
+     * Conditional loading.
      *
      * @var mixed<callable|string> A callable or Hook suffix
      */
     protected $condition = true;
 
     /**
-     * Asset handle
+     * Asset handle.
      *
      * @var string
      */
     protected $handle;
 
     /**
-     * Source URL
+     * Source URL.
      *
      * Use relative or absolute url
      * relative url are starting in theme folder
@@ -48,7 +43,7 @@ abstract class Asset
     protected $source;
 
     /**
-     * Asset dependencies
+     * Asset dependencies.
      *
      * List of asset handlers
      *
@@ -57,17 +52,17 @@ abstract class Asset
     protected $dependencies = [];
 
     /**
-     * Asset version
+     * Asset version.
      *
      * @var mixed
-     *          - string for explicit version
-     *          - bool:true for dynamic cache bustin
-     *          - bool:false for default behaviour
+     *            - string for explicit version
+     *            - bool:true for dynamic cache bustin
+     *            - bool:false for default behaviour
      */
     protected $version = '';
 
     /**
-     * Autoload
+     * Autoload.
      *
      * @var bool Should the asset autoload
      *           Default is TRUE
@@ -75,33 +70,48 @@ abstract class Asset
     protected $autoload = true;
 
     /**
-     * Get asset path
+     * Get asset path.
      *
      * @return string Path to asset file
      **/
     public function getPath(): string
     {
-        return \get_stylesheet_directory() . $this->source;
+        $path = str_replace(
+            [
+                \get_stylesheet_directory_uri(),
+                \get_template_directory_uri(),
+                WP_PLUGIN_URL,
+            ],
+            [
+                \get_stylesheet_directory(),
+                \get_template_directory(),
+                \WP_PLUGIN_DIR,
+            ],
+            $this->source
+        );
+
+        return $path;
     }
 
     /**
-     * Get asset URI
+     * Get asset URI.
      *
      * @return string Get URI for asset file
      **/
     public function getUri(): string
     {
-        return \get_stylesheet_directory_uri() . $this->source;
+        return $this->source;
     }
 
     /**
-     * Setup WordPress hooks
+     * Setup WordPress hooks.
      *
      * @return void
      */
     public function register(): void
     {
-        \add_action($this->hook, [$this, 'registerAsset']);
+        \add_action('init', [$this, 'registerAsset']);
+        \add_action('admin_init', [$this, 'registerAsset']);
 
         if ($this->autoload) {
             \add_action($this->hook, [$this, 'enqueueAsset']);
@@ -109,14 +119,14 @@ abstract class Asset
     }
 
     /**
-     * Enqueue asset
+     * Enqueue asset.
      *
      * @return void
      */
     abstract public function enqueueAsset(): void;
 
     /**
-     * Register asset
+     * Register asset.
      *
      * @return void
      */
@@ -129,15 +139,19 @@ abstract class Asset
      */
     protected function isExternal(): bool
     {
-        return (
-            substr($this->source, 0, 2) == '//' ||
-            substr($this->source, 0, 7) == 'http://' ||
-            substr($this->source, 0, 8) == 'https://'
-        ) ? true : false;
+        if (false !== strpos($this->source, home_url())) {
+            return false;
+        }
+
+        // if (false !== strpos($this->source, network_site_url())) {
+        //     return false;
+        // }
+
+        return true;
     }
 
     /**
-     * Locate source
+     * Locate source.
      *
      * @return string Source URI
      */
@@ -147,12 +161,13 @@ abstract class Asset
     }
 
     /**
-     * Get source version
+     * Get source version.
      *
      * @throws Exception
+     *
      * @return string Version string
      */
-    public function version(): string
+    public function version(): ?string
     {
         if ($this->isExternal()) {
             return $this->version;
@@ -172,5 +187,4 @@ abstract class Asset
 
         return filemtime($this->getPath());
     }
-
 }

@@ -1,41 +1,38 @@
 <?php
 /**
- * Script component
+ * Script component.
  *
- * This file handles registrationing and enqueing of script files
+ * This file handles registration and integration of script files
  *
- * @package   horttcore/wp-asset
  * @see       https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+ *
  * @license   GPL-2.0+
  */
 
-namespace Horttcore\Assets;
+namespace RalfHortt\Assets;
 
-/**
- *
- */
 class Script extends Asset
 {
-
     /**
-     * Where should the assets be registered
+     * Where should the assets be registered.
      *
-     * @var string $hook Hook to register
+     * @var string Hook to register
      */
     protected $hook = 'wp_enqueue_scripts';
 
     /**
-     * Class constructor
+     * Class constructor.
      *
-     * @param string $handle Handler
-     * @param string $source URI to script file; absolute or relative to theme folder
-     * @param array $dependencies Script dependencies
-     * @param string $version Version string; leave empty for cache busting
-     * @param bool $inFooter Should the script be loaded in footer; default is false
-     * @param bool $autoload Should the script be auto loaded; default ist true
+     * @param string $handle       Handler
+     * @param string $source       URI to script file; absolute or relative to theme folder
+     * @param array  $dependencies Script dependencies
+     * @param string $version      Version string; leave empty for cache busting
+     * @param bool   $inFooter     Should the script be loaded in footer; default is false
+     * @param bool   $autoload     Should the script be auto loaded; default ist true
+     *
      * @return void
      */
-    public function __construct(string $handle, string $source, array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true)
+    public function __construct(string $handle, string $source = '', array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true)
     {
         $this->handle = $handle;
         $this->source = $source;
@@ -46,7 +43,7 @@ class Script extends Asset
     }
 
     /**
-     * Enqueue script
+     * Enqueue script.
      *
      * @return void
      */
@@ -56,12 +53,16 @@ class Script extends Asset
     }
 
     /**
-     * Register script
+     * Register script.
      *
      * @return void
      */
     public function registerAsset(): void
     {
+        if ((bool) wp_scripts()->query($this->handle, 'registered')) {
+            return;
+        }
+
         \wp_register_script($this->handle, $this->locateSource(), $this->dependencies, $this->version(), $this->inFooter);
     }
 }
