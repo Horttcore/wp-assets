@@ -26,7 +26,7 @@ new LoginScript(string $handle, string $source, array $dependencies = [], string
 ```php
 use \RalfHortt\Assets\InlineScript;
 
-new InlineScript(string $handle, string $data, bool $position = true);
+new InlineScript(string $handle, string $data, bool $after = true);
 ```
 
 ### Styles
