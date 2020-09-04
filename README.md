@@ -12,6 +12,12 @@ new AdminScript(string $handle, string $source, array $dependencies = [], string
 new LoginScript(string $handle, string $source, array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true);
 ```
 
+### InlineScript
+
+```php
+new InlineScript(string $handle, string $data, bool $position = true);
+```
+
 ### Styles
 
 ```php
@@ -31,4 +37,11 @@ $myTheme = new Style('my-theme', 'theme.css', ['global.css'], '1.0.0', true);
 
 // Hook Style object into WordPress lifecycle
 $myTheme->register();
+
+// InlineScript
+$inlineScript = new InlineScript('my-theme', 'const ThemeName = "Awesome"', true);
+$inlineScript->register();
+
+// or
+(new Style('my-theme', 'theme.css', ['global.css'], '1.0.0', true))->register();
 ```
