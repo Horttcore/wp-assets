@@ -11,12 +11,10 @@
 
 namespace RalfHortt\Assets;
 
-use RalfHortt\Assets\Style;
-
 class PrintStyle extends Style
 {
     /**
-     * For which media is the stylesheet valid
+     * For which media is the stylesheet valid.
      *
      * @var string Media
      */
