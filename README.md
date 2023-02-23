@@ -21,7 +21,7 @@ new EditorScript(string $handle, string $source, array $dependencies = [], strin
 new LoginScript(string $handle, string $source, array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true);
 ```
 
-### InlineScript
+### InlineScripts
 
 ```php
 use \RalfHortt\Assets\InlineScript;
@@ -42,6 +42,7 @@ new Style(string $handle, string $source, array $dependencies = [], $version = t
 new AdminStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
 new EditorStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
 new LoginStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
+new PrintStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
 ```
 
 ## Usage

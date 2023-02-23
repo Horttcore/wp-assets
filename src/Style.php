@@ -21,6 +21,13 @@ class Style extends Asset
     protected $hook = 'wp_enqueue_scripts';
 
     /**
+     * Define stylesheet media.
+     *
+     * @var string Media for stylesheet
+     */
+    protected $media = 'all';
+
+    /**
      * Class constructor.
      *
      * @param string $handle       Handler
@@ -31,13 +38,14 @@ class Style extends Asset
      *
      * @return void
      */
-    public function __construct(string $handle, string $source = '', array $dependencies = [], $version = true, bool $autoload = true)
+    public function __construct(string $handle, string $source = '', array $dependencies = [], $version = true, bool $autoload = true, $media = 'all')
     {
         $this->handle = $handle;
         $this->source = $source;
         $this->dependencies = $dependencies;
         $this->version = $version;
         $this->autoload = $autoload;
+        $this->media = $media;
     }
 
     /**
@@ -61,6 +69,6 @@ class Style extends Asset
             return;
         }
 
-        \wp_register_style($this->handle, $this->locateSource(), $this->dependencies, $this->version());
+        \wp_register_style($this->handle, $this->locateSource(), $this->dependencies, $this->version(), $this->media);
     }
 }

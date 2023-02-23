@@ -1,3 +1,7 @@
+# 2.1.0 - 2023-02-23
+
+-   Add `PrintStyle` class
+
 # 2.0.0 - 2020-03-25
 
 -   Fix cache busting
