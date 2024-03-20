@@ -1,3 +1,7 @@
+# 2.2.0 - 2024-03-20
+
+-   Deprecate $inFooter in script assets
+
 # 2.1.0 - 2023-02-23
 
 -   Add `PrintStyle` class

@@ -26,20 +26,21 @@ class Script extends Asset
      * @param string $handle       Handler
      * @param string $source       URI to script file; absolute or relative to theme folder
      * @param array  $dependencies Script dependencies
-     * @param string $version      Version string; leave empty for cache busting
-     * @param bool   $inFooter     Should the script be loaded in footer; default is false
+     * @param string|bool|null $version      Version string; leave empty for cache busting
+     * @param bool   $deprecated    $inFooter Should the script be loaded in footer; default is false
      * @param bool   $autoload     Should the script be auto loaded; default ist true
      *
      * @return void
      */
-    public function __construct(string $handle, string $source = '', array $dependencies = [], string $version = null, bool $inFooter = false, bool $autoload = true)
+    public function __construct(
+        public string $handle,
+        public string $source = '',
+        public array $dependencies = [],
+        public string $version = null,
+        public bool $deprecated = false,
+        public bool $autoload = true
+        )
     {
-        $this->handle = $handle;
-        $this->source = $source;
-        $this->dependencies = $dependencies;
-        $this->version = $version;
-        $this->inFooter = $inFooter;
-        $this->autoload = $autoload;
     }
 
     /**
@@ -63,6 +64,6 @@ class Script extends Asset
             return;
         }
 
-        \wp_register_script($this->handle, $this->locateSource(), $this->dependencies, $this->version(), $this->inFooter);
+        \wp_register_script($this->handle, $this->locateSource(), $this->dependencies, $this->version());
     }
 }
