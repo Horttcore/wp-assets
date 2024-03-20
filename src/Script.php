@@ -36,7 +36,7 @@ class Script extends Asset
         public string $handle,
         public string $source = '',
         public array $dependencies = [],
-        public string $version = null,
+        public string|bool|null $version = null,
         public bool $deprecated = false,
         public bool $autoload = true
     ) {

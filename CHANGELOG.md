@@ -1,3 +1,7 @@
+# 2.2.1 - 2024-03-20
+
+-   Fix bug
+
 # 2.2.0 - 2024-03-20
 
 -   Deprecate $inFooter in script assets

@@ -5,12 +5,15 @@
     "authors": [
         {
             "name": "Ralf Hortt",
-            "email": "me@horttcore.de"
+            "email": "mail@ralfhortt.dev"
         }
     ],
     "autoload": {
         "psr-4": {
             "RalfHortt\\Assets\\": "src/"
         }
+    },
+    "require": {
+        "php": ">=8"
     }
 }
