@@ -23,12 +23,12 @@ class Script extends Asset
     /**
      * Class constructor.
      *
-     * @param string $handle       Handler
-     * @param string $source       URI to script file; absolute or relative to theme folder
-     * @param array  $dependencies Script dependencies
+     * @param string           $handle       Handler
+     * @param string           $source       URI to script file; absolute or relative to theme folder
+     * @param array            $dependencies Script dependencies
      * @param string|bool|null $version      Version string; leave empty for cache busting
-     * @param bool   $deprecated    $inFooter Should the script be loaded in footer; default is false
-     * @param bool   $autoload     Should the script be auto loaded; default ist true
+     * @param bool             $deprecated   $inFooter Should the script be loaded in footer; default is false
+     * @param bool             $autoload     Should the script be auto loaded; default ist true
      *
      * @return void
      */
@@ -39,8 +39,7 @@ class Script extends Asset
         public string $version = null,
         public bool $deprecated = false,
         public bool $autoload = true
-        )
-    {
+    ) {
     }
 
     /**
