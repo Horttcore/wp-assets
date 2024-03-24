@@ -33,13 +33,18 @@ class Script extends Asset
      * @return void
      */
     public function __construct(
-        public string $handle,
-        public string $source = '',
-        public array $dependencies = [],
-        public string|bool|null $version = null,
-        public bool $deprecated = false,
-        public bool $autoload = true
+        string $handle,
+        string $source = '',
+        array $dependencies = [],
+        string|bool|null $version = null,
+        bool $deprecated = false,
+        bool $autoload = true
     ) {
+        $this->handle = $handle;
+        $this->source = $source;
+        $this->dependencies = $dependencies;
+        $this->version = $version;
+        $this->autoload = $autoload;
     }
 
     /**
