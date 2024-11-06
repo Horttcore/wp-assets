@@ -38,11 +38,11 @@ use \RalfHortt\Assets\AdminStyle;
 use \RalfHortt\Assets\EditorStyle;
 use \RalfHortt\Assets\LoginStyle;
 
-new Style(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
-new AdminStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
-new EditorStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
-new LoginStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
-new PrintStyle(string $handle, string $source, array $dependencies = [], $version = true, bool $autoload = true);
+new Style(string $handle, string $source, array $dependencies = [], $version = true, string $media = 'all');
+new AdminStyle(string $handle, string $source, array $dependencies = [], $version = true, string $media = 'all');
+new EditorStyle(string $handle, string $source, array $dependencies = [], $version = true, string $media = 'all');
+new LoginStyle(string $handle, string $source, array $dependencies = [], $version = true, string $media = 'all');
+new PrintStyle(string $handle, string $source, array $dependencies = [], $version = true, string $media = 'all');
 ```
 
 ## Usage
@@ -60,7 +60,7 @@ $inlineScript = new InlineScript('my-theme', 'const ThemeName = "Awesome"', true
 $inlineScript->register();
 
 // or
-(new Style('my-theme', 'theme.css', ['global.css'], '1.0.0', true))->register();
+(new Style('my-theme', 'theme.css', ['global.css']))->register();
 ```
 
 ```php
