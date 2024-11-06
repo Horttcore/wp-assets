@@ -25,14 +25,17 @@ class Style extends Asset
     /**
      * Class constructor.
      *
-     * @param  string[]  $dependencies  Array of style dependencies
+     * @param string[] $dependencies Array of style dependencies
      */
     public function __construct(
         protected string $handle,
         protected string $source = '',
         protected array $dependencies = [],
         protected mixed $version = true,
-        protected string $media = 'all') {}
+        protected string $media = 'all'
+    )
+    {
+    }
 
     /**
      * Enqueue style.
