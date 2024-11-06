@@ -15,10 +15,10 @@ use \RalfHortt\Assets\AdminScript;
 use \RalfHortt\Assets\EditorScript;
 use \RalfHortt\Assets\LoginScript;
 
-new Script(string $handle, string $source, array $dependencies = [], string $version = true, bool $autoload = true);
-new AdminScript(string $handle, string $source, array $dependencies = [], string $version = true, bool $autoload = true);
-new EditorScript(string $handle, string $source, array $dependencies = [], string $version = true, bool $autoload = true);
-new LoginScript(string $handle, string $source, array $dependencies = [], string $version = true, bool $autoload = true);
+new Script(string $handle, string $source, array $dependencies = [], string $version = true, array|bool $args);
+new AdminScript(string $handle, string $source, array $dependencies = [], string $version = true, array|bool $args);
+new EditorScript(string $handle, string $source, array $dependencies = [], string $version = true, array|bool $args);
+new LoginScript(string $handle, string $source, array $dependencies = [], string $version = true, array|bool $args);
 ```
 
 ### InlineScripts

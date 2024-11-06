@@ -1,3 +1,7 @@
+# 3.0.0 - 2024-06-18
+
+- Add loading strategy for script assets
+
 # 2.2.2 - 2024-03-24
 
 -   Fix bug

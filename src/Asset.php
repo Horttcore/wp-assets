@@ -9,6 +9,8 @@
 
 namespace RalfHortt\Assets;
 
+use Exception;
+
 abstract class Asset
 {
     /**
@@ -16,81 +18,63 @@ abstract class Asset
      *
      * @var string Hook to register
      */
-    protected $hook;
+    protected string $hook;
 
     /**
      * Conditional loading.
      *
      * @var mixed<callable|string> A callable or Hook suffix
      */
-    protected $condition = true;
+    protected mixed $condition = true;
 
     /**
      * Asset handle.
-     *
-     * @var string
      */
-    protected $handle;
+    protected string $handle;
 
     /**
      * Source URL.
      *
      * Use relative or absolute url
      * relative url are starting in theme folder
-     *
-     * @var string
      */
-    protected $source;
+    protected string $source;
 
     /**
      * Asset dependencies.
      *
      * List of asset handlers
-     *
-     * @var array
      */
-    protected $dependencies = [];
+    protected array $dependencies = [];
 
     /**
      * Asset version.
      *
      * @var mixed
      *            - string for explicit version
-     *            - bool:true for dynamic cache bustin
+     *            - bool:true for dynamic cache busting
      *            - bool:false for default behaviour
      */
-    protected $version = '';
-
-    /**
-     * Autoload.
-     *
-     * @var bool Should the asset autoload
-     *           Default is TRUE
-     */
-    protected $autoload = true;
+    protected mixed $version = '';
 
     /**
      * Get asset path.
-     *
-     * @return string Path to asset file
      **/
     public function getPath(): string
     {
-        $path = str_replace(
+        return str_replace(
             [
-                \get_stylesheet_directory_uri(),
-                \get_template_directory_uri(),
+                get_stylesheet_directory_uri(),
+                get_template_directory_uri(),
                 WP_PLUGIN_URL,
             ],
             [
-                \get_stylesheet_directory(),
-                \get_template_directory(),
-                \WP_PLUGIN_DIR,
+                get_stylesheet_directory(),
+                get_template_directory(),
+                WP_PLUGIN_DIR,
             ],
             $this->source
         );
-
-        return $path;
     }
 
     /**
@@ -110,50 +94,35 @@ abstract class Asset
      */
     public function register(): void
     {
-        \add_action('init', [$this, 'registerAsset']);
-        \add_action('admin_init', [$this, 'registerAsset']);
-
-        if ($this->autoload) {
-            \add_action($this->hook, [$this, 'enqueueAsset']);
-        }
+        add_action('init', [$this, 'registerAsset']);
+        add_action('admin_init', [$this, 'registerAsset']);
+        add_action($this->hook, [$this, 'enqueueAsset']);
     }
 
     /**
      * Enqueue asset.
-     *
-     * @return void
      */
     abstract public function enqueueAsset(): void;
 
     /**
      * Register asset.
-     *
-     * @return void
      */
     abstract public function registerAsset(): void;
 
     /**
      * Is asset an external resource?
-     *
-     * @return bool
      */
     protected function isExternal(): bool
     {
-        if (false !== strpos($this->source, home_url())) {
+        if (str_contains($this->source, home_url())) {
             return false;
         }
-
-        // if (false !== strpos($this->source, network_site_url())) {
-        //     return false;
-        // }
 
         return true;
     }
 
     /**
      * Locate source.
-     *
-     * @return string Source URI
      */
     protected function locateSource(): string
     {
@@ -164,8 +133,6 @@ abstract class Asset
      * Get source version.
      *
      * @throws Exception
-     *
-     * @return string Version string
      */
     public function version(): ?string
     {

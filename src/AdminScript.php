@@ -18,5 +18,5 @@ class AdminScript extends Script
      *
      * @var string Hook to register
      */
-    protected $hook = 'admin_enqueue_scripts';
+    protected string $hook = 'admin_enqueue_scripts';
 }

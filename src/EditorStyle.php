@@ -18,5 +18,5 @@ class EditorStyle extends Style
      *
      * @var string Hook to register
      */
-    protected $hook = 'enqueue_block_editor_assets';
+    protected string $hook = 'enqueue_block_editor_assets';
 }

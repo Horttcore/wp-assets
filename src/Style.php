@@ -11,6 +11,8 @@
 
 namespace RalfHortt\Assets;
 
+use Exception;
+
 class Style extends Asset
 {
     /**
@@ -18,50 +20,32 @@ class Style extends Asset
      *
      * @var string Hook to register
      */
-    protected $hook = 'wp_enqueue_scripts';
-
-    /**
-     * Define stylesheet media.
-     *
-     * @var string Media for stylesheet
-     */
-    protected $media = 'all';
+    protected string $hook = 'wp_enqueue_scripts';
 
     /**
      * Class constructor.
      *
-     * @param string $handle       Handler
-     * @param string $source       URI to script file; absolute or relative to theme folder
-     * @param array  $dependencies Script dependencies
-     * @param string $version      Version string; leave empty for cache busting
-     * @param bool   $autoload     Should the script be auto loaded; default ist true
-     *
-     * @return void
+     * @param  string[]  $dependencies  Array of style dependencies
      */
-    public function __construct(string $handle, string $source = '', array $dependencies = [], $version = true, bool $autoload = true, $media = 'all')
-    {
-        $this->handle = $handle;
-        $this->source = $source;
-        $this->dependencies = $dependencies;
-        $this->version = $version;
-        $this->autoload = $autoload;
-        $this->media = $media;
-    }
+    public function __construct(
+        protected string $handle,
+        protected string $source = '',
+        protected array $dependencies = [],
+        protected mixed $version = true,
+        protected string $media = 'all') {}
 
     /**
      * Enqueue style.
-     *
-     * @return void
      */
     public function enqueueAsset(): void
     {
-        \wp_enqueue_style($this->handle);
+        wp_enqueue_style($this->handle);
     }
 
     /**
      * Register style.
      *
-     * @return void
+     * @throws Exception
      */
     public function registerAsset(): void
     {
@@ -69,6 +53,6 @@ class Style extends Asset
             return;
         }
 
-        \wp_register_style($this->handle, $this->locateSource(), $this->dependencies, $this->version(), $this->media);
+        wp_register_style($this->handle, $this->locateSource(), $this->dependencies, $this->version(), $this->media);
     }
 }

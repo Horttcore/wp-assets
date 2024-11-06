@@ -18,5 +18,5 @@ class AdminStyle extends Style
      *
      * @var string Hook to register
      */
-    protected $hook = 'admin_print_styles';
+    protected string $hook = 'admin_print_styles';
 }

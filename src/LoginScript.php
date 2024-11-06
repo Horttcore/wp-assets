@@ -18,5 +18,5 @@ class LoginScript extends Script
      *
      * @var string Hook to register
      */
-    protected $hook = 'login_enqueue_scripts';
+    protected string $hook = 'login_enqueue_scripts';
 }

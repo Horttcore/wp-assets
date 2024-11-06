@@ -18,5 +18,5 @@ class PrintStyle extends Style
      *
      * @var string Media
      */
-    protected $media = 'print';
+    protected mixed $media = 'print';
 }

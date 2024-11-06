@@ -18,5 +18,5 @@ class LoginStyle extends Style
      *
      * @var string Hook to register
      */
-    protected $hook = 'login_enqueue_scripts';
+    protected string $hook = 'login_enqueue_scripts';
 }
