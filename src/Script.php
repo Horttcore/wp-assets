@@ -21,7 +21,7 @@ class Script extends Asset
     /**
      * Class constructor.
      *
-     * @param  string[]  $dependencies  Array of script dependencies
+     * @param string[] $dependencies Array of script dependencies
      */
     public function __construct(
         protected string $handle,
@@ -29,7 +29,8 @@ class Script extends Asset
         protected array $dependencies = [],
         protected mixed $version = null,
         protected array $args = [],
-    ) {}
+    ) {
+    }
 
     /**
      * Enqueue script.
